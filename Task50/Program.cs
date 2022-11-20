@@ -5,16 +5,36 @@
 //8 4 2 4
 //[1,7] -> такого числа в массиве нет
 
+Console.WriteLine("Введите первое значение (строка)  элемента  ");
+int oneElement = int.Parse(Console.ReadLine() ?? "0");
+Console.WriteLine("Введите второе значение (столбец)  элемента ");
+int twoElement = int.Parse(Console.ReadLine() ?? "0");
 
+int[,] matrix = new int[4, 4];
 
-int[,] matrix = new int[rows, columns];
+GetArray(matrix);
 
-for (int rows = 0; rows < 4; rows++)
+int a = oneElement - 1;
+int v = twoElement - 1;
+
+if (oneElement <= matrix.GetLength(0) && twoElement <= matrix.GetLength(1))
 {
-    for (int columns = 0; columns < 4; columns++)
-    {
-        Console.Write($"{matrix[rows, columns]} ");
-    }
-    Console.WriteLine();
+    Console.WriteLine(matrix[a, v]);
+}
+if (oneElement > matrix.GetLength(0) || twoElement > matrix.GetLength(1))
+{
+    Console.WriteLine("Значение выходит за рамки массива   ");
 }
 
+void GetArray(int[,] inArray)
+{
+    for (int i = 0; i < inArray.GetLength(0); i++)
+    {
+        for (int j = 0; j < inArray.GetLength(1); j++)
+        {
+            inArray[i, j] = new Random().Next(-100, 100);
+            Console.Write("{0,7:F0}", inArray[i, j]);
+        }
+        Console.WriteLine();
+    }
+}
